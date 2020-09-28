@@ -1,11 +1,15 @@
 const APIURL = "http://api.github.com/users";
 const main = document.getElementById('main'); 
 const form = document.getElementById('form'); 
-const search = document.getElementById('search');     
+const search = document.getElementById('search');
+const loader = document.querySelector('.loader');     
+
 
 async function getUser (user){
+    loader.style.visibility="visible"
     const resp = await fetch(`${APIURL}/${user}`);
     const respData = await resp.json();
+    loader.style.visibility="hidden"
     createUserCard(respData);
 }
 function createUserCard(user){
